@@ -2,8 +2,8 @@
 //  ZLMineViewController.swift
 //  movieShow
 //
-//  Created by 张彦林 on 2018/11/9.
-//  Copyright © 2018 zhangyanlf.cn. All rights reserved.
+//  Created by 何怡家 on 2018/11/9.
+//  Copyright © 2018 heyijia All rights reserved.
 //
 
 import UIKit
@@ -13,13 +13,12 @@ import RxSwift
 
 
 let zlMyOtherCell: String = "zlMyOtherCell"
-let zlAttentCell: String = "zlAttentCell"
+
 class ZLMineViewController: UITableViewController {
 
     private let disposeBag = DisposeBag()
     
     var sections = [[ZLMyCellModel]]()
-    var attents = [ZLMyAttent]()
     fileprivate lazy var headerView: ZLNoLoginHeaderView = {
         let headerView = ZLNoLoginHeaderView.loadViewFromNib()
         return headerView
@@ -41,7 +40,6 @@ class ZLMineViewController: UITableViewController {
         tableView.separatorStyle = .none
         
         tableView.zl_registerCell(cell: ZLMyOtherCell.self)
-        tableView.zl_registerCell(cell: ZLAttentCell.self)
         loadData()
         
     }
@@ -62,22 +60,17 @@ class ZLMineViewController: UITableViewController {
 extension ZLMineViewController {
     ///加载数据
     func loadData() {
-        NetWorkTool.loadMyCellData { (sections) in
-            let string = "{\"text\": \"我的关注\", \"grey_text\": \"\"}"
-            let myAttent = ZLMyCellModel.deserialize(from: string)
-            var myAttents = [ZLMyCellModel]()
-            myAttents.append(myAttent!)
-            self.sections.append(myAttents)
-            self.sections += sections
-            self.tableView.reloadData()
-            
-            NetWorkTool.loadMyAttent(completionCallBack: { (attents) in
-                self.attents = attents
-                let indexSet = IndexSet(integer: 0)
-                self.tableView.reloadSections(indexSet, with: .automatic)
-            })
-            
-        }
+        let string = "{\"text\": \"我的收藏\", \"grey_text\": \"\", \"key\": \"star\"}"
+        let myAttent = ZLMyCellModel.deserialize(from: string)
+        var myAttents = [ZLMyCellModel]()
+        myAttents.append(myAttent!)
+        self.sections.append(myAttents)
+        let string1 = "{\"text\": \"我的评论\", \"grey_text\": \"\", \"key\": \"review\"}"
+        let myAttent1 = ZLMyCellModel.deserialize(from: string1)
+        var myAttents1 = [ZLMyCellModel]()
+        myAttents1.append(myAttent1!)
+        self.sections.append(myAttents1)
+        self.tableView.reloadData()
         
         headerView.moreButton.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] in
@@ -115,26 +108,6 @@ extension ZLMineViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        if indexPath.section == 0 && indexPath.row == 0 {
-            let cell = tableView.zl_dequeueReusableCell(indexPath: indexPath) as ZLAttentCell
-
-            let section = sections[indexPath.section]
-            cell.zlMyCellModel = section[indexPath.row]
-            
-            if sections.count == 0 || sections.count == 1 {
-                cell.attentCollectionView.isHidden = true
-            }
-            if sections.count == 1 { cell.zlMyAtten = attents[0] }
-            if sections.count > 1 { cell.attents = attents }
-            cell.myConcernSelected = { [weak self] (myAttent) in
-                let userDetailVC = ZLUserDetailController()
-                userDetailVC.userId = myAttent.userid
-                self?.navigationController?.pushViewController(userDetailVC, animated: true)
-            }
-           
-            return cell
-        }
         let cell = tableView.zl_dequeueReusableCell(indexPath: indexPath) as ZLMyOtherCell
         let section = sections[indexPath.section]
         let myCellModel = section[indexPath.row]
@@ -146,19 +119,18 @@ extension ZLMineViewController {
     }
     // 行高
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            return (attents.count == 0 || attents.count == 1) ? 40 : 114
-        }
-        return 40
+        return 80
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        /**
         if indexPath.section == 3 && indexPath.row == 1 { //跳转系统设置界面
             let systemSVC = ZLSystemSetupController()
             self.navigationController?.pushViewController(systemSVC, animated: true)
             
         }
+         **/
     }
     
     //这只吸顶效果

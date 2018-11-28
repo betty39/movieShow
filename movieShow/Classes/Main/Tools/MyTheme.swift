@@ -2,8 +2,8 @@
 //  MyTheme.swift
 //  movieShow
 //
-//  Created by 张彦林 on 2018/11/15.
-//  Copyright © 2018 zhangyanlf.cn. All rights reserved.
+//  Created by 何怡家 on 2018/11/15.
+//  Copyright © 2018 heyijia All rights reserved.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  movieShow
 //
-//  Created by 张彦林 on 2018/11/8.
+//  Created by 何怡家 on 2018/11/8.
 //  Copyright © 2018 zhangyanlf. All rights reserved.
 //
 
