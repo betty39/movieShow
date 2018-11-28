@@ -55,6 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="wallpaper_profile_night" width="320" height="180"/>
+        <image name="wallpaper_profile_night" width="160" height="100"/>
     </resources>
 </document>
