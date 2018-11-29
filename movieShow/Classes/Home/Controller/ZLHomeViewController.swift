@@ -14,9 +14,9 @@ class ZLHomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
-        NetWorkTool.loadHomeTitleData { (homeTitles) in
-            NewsTitleTable().insert(homeTitles)
-        }
+//        NetWorkTool.loadHomeTitleData { (homeTitles) in
+//            NewsTitleTable().insert(homeTitles)
+//        }
         
     }
 

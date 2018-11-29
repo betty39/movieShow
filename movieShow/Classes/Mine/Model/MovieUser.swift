@@ -6,4 +6,14 @@
 //  Copyright © 2018 zhangyanlf.cn. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import HandyJSON
+
+struct MovieUser: HandyJSON {
+    
+    var id: Int = 0
+    var username: String = ""
+    var password: String = ""
+}
+
+

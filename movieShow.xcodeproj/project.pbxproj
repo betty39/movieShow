@@ -39,6 +39,7 @@
 		A4FDF75021A5375A00202DDB /* SQliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FDF74F21A5375A00202DDB /* SQliteManager.swift */; };
 		A4FDF75221A537A200202DDB /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FDF75121A537A200202DDB /* libsqlite3.tbd */; };
 		C19D67ED1B3EC167959B497A /* Pods_movieShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C844C24B2273CB3BDD3DF4C6 /* Pods_movieShow.framework */; };
+		F298994121AFF510008BB642 /* MovieUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298994021AFF510008BB642 /* MovieUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		A4FDF75121A537A200202DDB /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B5F03EC2BA66D5637A1FE527 /* Pods_movieShowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movieShowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C844C24B2273CB3BDD3DF4C6 /* Pods_movieShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movieShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F298994021AFF510008BB642 /* MovieUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				A49ABE6E219BC17000E63CF9 /* ZLMyCellModel.swift */,
+				F298994021AFF510008BB642 /* MovieUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				A49ABE72219BD1C600E63CF9 /* ZLMyOtherCell.swift in Sources */,
 				A44072BB21A249CC0062FD09 /* ZLMoreLoginViewController.swift in Sources */,
 				A49ABE81219C1FAF00E63CF9 /* ZLNoLoginHeaderView.swift in Sources */,
+				F298994121AFF510008BB642 /* MovieUser.swift in Sources */,
 				A4C5D140219ABDE400B9F4C1 /* Const.swift in Sources */,
 				A4E9374721AB962C00C58810 /* Emoji.swift in Sources */,
 				A4C65683219D1DBC00E8E118 /* MyTheme.swift in Sources */,
