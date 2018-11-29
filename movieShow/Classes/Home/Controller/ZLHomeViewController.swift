@@ -14,7 +14,7 @@ fileprivate let kTitleViewH : CGFloat = 40
 fileprivate let movieListCell = "MovieListCellID"
 
 class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
-    var titles = ["热门", "社会", "科技", "旅游"]
+    var titles = ["热门", "最新", "经典", "华语", "欧美", "动作", "喜剧", "爱情", "科幻"]
     var sections: JSON = []
     
     override func viewDidLoad() {
@@ -100,7 +100,7 @@ extension ZLHomeViewController {
         
         // 设置cells数据
         
-        NetWorkTool.loadHomeMovieData(genres: "剧情") { (data) in
+        NetWorkTool.loadHomeMovieData(genres: "热门") { (data) in
             self.sections = data
             self.tableView.reloadData()
         }
@@ -110,6 +110,9 @@ extension ZLHomeViewController {
 // MARK:- pageTitleViewDelegate
 extension ZLHomeViewController: MovieTagViewDelegate {
     func pageTitleView(pageTitleView: MovieTagView, didSelectedIndex index: Int) {
-        //pageContentView.scrollToIndex(index: index)
+        NetWorkTool.loadHomeMovieData(genres: titles[index]) { (data) in
+            self.sections = data
+            self.tableView.reloadData()
+        }
     }
 }

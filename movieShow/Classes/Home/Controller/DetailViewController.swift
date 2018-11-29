@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
             RatingView.showNORating(view: ratingView1)
         }
         
-        yearText1.text = detail["year"].string
+        yearText1.text = detail["year"].string! + "年    评分: " + transAverage(average: detail["rating"]["average"].double!)
         descText1.text = "正在获取～"
         getMovieDetail(id:detail["id"].string!)
         // Do any additional setup after loading the view.

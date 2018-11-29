@@ -22,10 +22,10 @@ extension NetWorkToolProtocol {
     
      //------------Home--------------------------
     static func loadHomeMovieData(genres: String, completionCallBack:@escaping(JSON) -> ()) {
-        let url = BASE_URL + "/v2/movie/top250"
-        let parameters = ["genres" : genres]
+        let url = BASE_URL + "/v2/movie/search"
+        //let parameters = ["tag": genres, "start":0,"count": 30]
         print(url)
-        Alamofire.request(url, method: .get, parameters: parameters,encoding: URLEncoding.default).responseJSON {
+        Alamofire.request(url, method: .get, parameters: ["tag": genres, "start":0,"count": 30],encoding: URLEncoding.default).responseJSON {
             response in
             guard response.result.isSuccess else {
                 //网络错误提示
