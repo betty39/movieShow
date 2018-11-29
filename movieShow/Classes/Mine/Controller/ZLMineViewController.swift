@@ -124,13 +124,10 @@ extension ZLMineViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        /**
-        if indexPath.section == 3 && indexPath.row == 1 { //跳转系统设置界面
-            let systemSVC = ZLSystemSetupController()
-            self.navigationController?.pushViewController(systemSVC, animated: true)
-            
-        }
-         **/
+
+        let systemSVC = MyCollectionViewController()
+        self.navigationController?.pushViewController(systemSVC, animated: true)
+        
     }
     
     //这只吸顶效果

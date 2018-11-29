@@ -9,7 +9,7 @@
 import UIKit
 import HandyJSON
 
-struct MovieListTitle: HandyJSON {
+struct MovieListTitle : HandyJSON{
     var moviename: String = ""
     var movieid: Int = 0
     var showyear: String = ""
@@ -17,7 +17,7 @@ struct MovieListTitle: HandyJSON {
     var picture: String = ""
 }
 
-struct MovieListTitleTag: HandyJSON {
+struct MovieListTitleTag : HandyJSON{
     var category: String = ""
     var categoryid: Int = 0
 }

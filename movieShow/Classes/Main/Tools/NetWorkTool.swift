@@ -12,95 +12,51 @@ import SwiftyJSON
 
 protocol NetWorkToolProtocol {
     //------------Home--------------------------
-    ///获取新闻标题数据
-     static func loadHomeTitleData(completionCallBack:@escaping(_ sections:[ZLHomeNewsTitle]) -> ())
+    // 获取电影分类列表
+    static func loadMovieDetailData(id: String, completionCallBack:@escaping(_ data:JSON) -> ())
     
-    
-    //------------Mine--------------------------
-    ///获取我的界面cell数据
-    static func loadMyCellData(completionCallBack:@escaping(_ sections:[[ZLMyCellModel]]) -> ())
+    static func loadHomeMovieData(genres: String, completionCallBack:@escaping(_ data:JSON) -> ())
 }
 
 extension NetWorkToolProtocol {
     
      //------------Home--------------------------
-    ///获取新闻标题数据
-    static func loadHomeTitleData(completionCallBack: @escaping ([ZLHomeNewsTitle]) -> ()) {
-        let url = BASE_URL + "/article/category/get_subscribed/v1/?"
-        let parameters = ["device_id" : device_id,"iid":iid]
-        
-        Alamofire.request(url, parameters: parameters).responseJSON { (response) in
-            
+    static func loadHomeMovieData(genres: String, completionCallBack:@escaping(JSON) -> ()) {
+        let url = BASE_URL + "/v2/movie/top250"
+        let parameters = ["genres" : genres]
+        print(url)
+        Alamofire.request(url, method: .get, parameters: parameters,encoding: URLEncoding.default).responseJSON {
+            response in
             guard response.result.isSuccess else {
                 //网络错误提示
+                print("网络错误")
                 return
             }
-            if let value = response.result.value {
-                let json = JSON(value)
-                guard json["message"] == "success" else { return }
-                if let dataDict = json["data"].dictionary{
-                    if let datas = dataDict["data"]?.arrayObject{
-                        var titleArrays = [ZLHomeNewsTitle]()
-                        titleArrays.append(ZLHomeNewsTitle.deserialize(from: "{\"category\": \"\", \"name\": \"推荐\"}")!)
-                        for dict in datas {
-                            let titles = ZLHomeNewsTitle.deserialize(from: dict as? NSDictionary)
-                            titleArrays.append(titles!)
-                        }
-                        //titleArrays += datas.compactMap(ZLHomeNewsTitle.deserialize(from: $0 as? Dictionary))
-                        completionCallBack(titleArrays)
-                    }
-                    
-                }
-                
-            }
+            var data:JSON = []
+            data = JSON(response.result.value)["subjects"]
+            completionCallBack(data)
         }
     }
     
-    
-    
+    static func loadMovieDetailData(id: String, completionCallBack:@escaping(JSON) -> ()) {
+        let url = BASE_URL + "/v2/movie/subject/\(id)"
+        print(url)
+        Alamofire.request(url, method: .get).responseJSON {
+            response in
+            guard response.result.isSuccess else {
+                //网络错误提示
+                print("网络错误")
+                return
+            }
+            var data:JSON = []
+            data = JSON(response.result.value)
+            completionCallBack(data)
+        }
+    }
      //------------Mine------------------------------------
-    ///获取我的界面cell数据
-    static func loadMyCellData(completionCallBack:@escaping (_ sections:[[ZLMyCellModel]]) -> ()) {
-        
-        let url = BASE_URL + "/user/tab/tabs?"
-        let parameters = ["device_id" : device_id]
-        
-        Alamofire.request(url, parameters: parameters).responseJSON { (response) in
-            
-            guard response.result.isSuccess else {
-                //网络错误提示
-                return
-            }
-            if let value = response.result.value {
-                let json = JSON(value)
-                guard json["message"] == "success" else {
-                    return
-                }
-                if let data = json["data"].dictionary{
-                    if let sections = data["sections"]?.array{
-                        var sectionArray = [[ZLMyCellModel]]()
-                        for item in sections {
-                            var rows = [ZLMyCellModel]()
-                            for row in item.arrayObject! {
-                                let myCellModel = ZLMyCellModel.deserialize(from: row as? NSDictionary)
-                                rows.append(myCellModel!)
-                            }
-                            sectionArray.append(rows)
-                        }
-                        completionCallBack(sectionArray)
-                    }
-                    
-                }
-                
-            }
-        }
-        
-    }
     
 }
 
 struct NetWorkTool: NetWorkToolProtocol {
    
-    
-    
 }
