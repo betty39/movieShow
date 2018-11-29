@@ -46,6 +46,7 @@ class ZLMoreLoginViewController:  AnimatableModalViewController{
         
             if sqlmannager.islogin(model) == true {
                 print("登录成功！")
+                //跳转
             }else{
                 print("登录失败！")
                 let alert = UIAlertController(title: "提示", message: "用户名或密码，请重新输入！", preferredStyle: UIAlertController.Style.alert)
