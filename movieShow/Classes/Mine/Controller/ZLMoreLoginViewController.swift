@@ -12,7 +12,7 @@ import IBAnimatable
 class ZLMoreLoginViewController:  AnimatableModalViewController{
     
     
-    
+    var sqlmannager:SQLiteManager!
     @IBOutlet weak var loginCloseButton: UIButton!
     /// 登录标题
     @IBOutlet weak var topLabel: UILabel!
@@ -32,11 +32,38 @@ class ZLMoreLoginViewController:  AnimatableModalViewController{
         super.viewDidLoad()
         setTheme()
     }
-    
+      //点击登录
+    @IBAction func loginclick(_ sender: Any) {
+            let username:String = mobileTextField.text!
+            let password:String = VerificationTextField.text!
+            //let jsonString = "{\"id\":24,\"username\":\"user1\",\"password\":\"user1\"}"
+            let jsonString = "{\"id\":24,\"username\":\""+username+"\",\"password\":\""+password+"\"}"
+            guard let model = MovieUser.deserialize(from: jsonString) else {return}
+            //与数据库建立连接
+            sqlmannager = SQLiteManager()
+            //sqlmannager.tableLampCreate()
+            // sqlmannager.insert(model)
+        
+            if sqlmannager.islogin(model) == true {
+                print("登录成功！")
+                //跳转
+            }else{
+                print("登录失败！")
+                let alert = UIAlertController(title: "提示", message: "用户名或密码，请重新输入！", preferredStyle: UIAlertController.Style.alert)
+                let btnOK = UIAlertAction(title: "好的", style: .default, handler: nil)
+                alert.addAction(btnOK)
+                self.present(alert, animated: true, completion: nil)
+            }
+        
+        
+        
+    }
     /// 退出
     @IBAction func moreLoginCloseBtn(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+  
     
 }
 
