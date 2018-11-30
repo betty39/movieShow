@@ -93,10 +93,18 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeX-lu-t4y" customClass="AnimatableButton" customModule="IBAnimatable">
-                                <rect key="frame" x="30" y="256" width="315" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eTm-Gm-Qcf" userLabel="registerbtn">
+                                <rect key="frame" x="290" y="206" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="注册"/>
+                                <connections>
+                                    <action selector="regbtnclick:" destination="LWP-qK-PY5" eventType="touchUpInside" id="eZM-dQ-2bE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeX-lu-t4y" customClass="AnimatableButton" customModule="IBAnimatable">
+                                <rect key="frame" x="30" y="270" width="315" height="44"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.66274509800000003" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="login"/>
+                                <state key="normal" title="登录"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="22"/>
@@ -140,8 +148,10 @@
                         <outlet property="VerificationTextField" destination="hVZ-jt-SSu" id="6Si-Lj-LIn"/>
                         <outlet property="enterZhangyanlfNewsButton" destination="GeX-lu-t4y" id="asd-M1-OCw"/>
                         <outlet property="loginCloseButton" destination="nmp-Z2-A63" id="kV6-1w-jY3"/>
+                        <outlet property="loginbtn" destination="GeX-lu-t4y" id="oVL-Tz-B7V"/>
                         <outlet property="mobileTextField" destination="f8A-FL-Ss4" id="IQ4-7d-nTj"/>
                         <outlet property="mobileView" destination="6ja-UL-9fP" id="9rq-JB-0eV"/>
+                        <outlet property="registerbtn" destination="eTm-Gm-Qcf" id="DC5-In-Pcu"/>
                         <outlet property="topLabel" destination="lEJ-XQ-160" id="AI0-eb-eta"/>
                         <outlet property="verificationView" destination="Hxm-9B-z8p" id="ios-Dp-OIw"/>
                     </connections>
