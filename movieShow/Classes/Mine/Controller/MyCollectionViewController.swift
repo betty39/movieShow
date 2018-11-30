@@ -29,16 +29,12 @@ class MyCollectionViewController: UIViewController, UITableViewDelegate,UITableV
         let contentH = kScreenH - kStatusBarH - kNavBarH
         let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH, width: kScreenW, height: contentH)
         let table = UITableView(frame: contentFrame)
+        table.separatorStyle = .none
         table.zl_registerCell(cell: MovieLIstViewCell.self)
         table.dataSource = self
         table.delegate = self
         return table
     }()
-    /**
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return nil
-    }
- **/
     
     // 行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,7 +55,7 @@ class MyCollectionViewController: UIViewController, UITableViewDelegate,UITableV
     }
     // 行高
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 153
+        return 139
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

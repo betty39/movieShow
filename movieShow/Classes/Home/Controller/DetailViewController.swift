@@ -24,15 +24,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movieNameText1.text = detail["title"].string
-        imageVIew1.kf.setImage(with: URL(string:detail["images"]["large"].string!))
-        //暂时未处理没有评分的情况
-        if let rating = Double(transAverage(average: detail["rating"]["average"].double!)) {
-            RatingView.showInView(view: ratingView1, value:rating)
-        }else {
-            RatingView.showNORating(view: ratingView1)
-        }
-        
-        yearText1.text = detail["year"].string! + "年    评分: " + transAverage(average: detail["rating"]["average"].double!)
+        imageVIew1.kf.setImage(with: URL(string:detail["cover"].string!))
+ 
+        yearText1.text = "正在获取～"
         descText1.text = "正在获取～"
         getMovieDetail(id:detail["id"].string!)
         // Do any additional setup after loading the view.
@@ -51,6 +45,12 @@ class DetailViewController: UIViewController {
     
     func getMovieDetail(id:String){
         NetWorkTool.loadMovieDetailData(id: id) { (detail) in
+            self.yearText1.text = detail["year"].string! + "年    评分: " + self.transAverage(average: detail["rating"]["average"].double!)
+            if let rating = Double(self.transAverage(average: detail["rating"]["average"].double!)) {
+                RatingView.showInView(view: self.ratingView1, value:rating)
+            }else {
+                RatingView.showNORating(view: self.ratingView1)
+            }
             self.descText1.text = detail["summary"].string
         }
     }
