@@ -7,12 +7,16 @@
 //
 
 import UIKit
-fileprivate let kTitleViewH : CGFloat = 50
+import Kingfisher
+import SwiftyJSON
+fileprivate let kTitleViewH : CGFloat = 40
 
-class ZLHomeViewController: UIViewController {
+fileprivate let movieListCell = "MovieListCellID"
+
+class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     var titles = ["热门", "社会", "科技", "旅游"]
-    var cells = [[MovieListTitle]]()
-
+    var sections: JSON = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -24,33 +28,63 @@ class ZLHomeViewController: UIViewController {
     // MARK:- 懒加载
     fileprivate lazy var pageTitleView: MovieTagView = {
         let titleFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH, width: kScreenW, height: kTitleViewH)
-        //titles = ["热门", "社会", "科技", "旅游"]
         let titleView = MovieTagView(frame: titleFrame, titles: titles)
+        tableView.separatorStyle = .none
         titleView.delegate = self
         return titleView
     }()
-    /**
-    fileprivate lazy var pageContentView: MovieListView = {[weak self] in
+    
+    //初始化table
+    fileprivate lazy var tableView: UITableView = {
         // 1. 确定内容 frame
         let contentH = kScreenH - kStatusBarH - kNavBarH
         let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH + kTitleViewH, width: kScreenW, height: contentH)
-        // 2. 确定所有控制器
-        var childVcs = [UIViewController]()
-        for _ in titles {
-            let vc = UIViewController()
-            vc.view.backgroundColor = UIColor(r: CGFloat(arc4random_uniform(255)), g: CGFloat(arc4random_uniform(255)), b: CGFloat(arc4random_uniform(255)))
-            childVcs.append(vc)
-        }
-        let string1 = "{\"moviename\": \"test1\", \"movieid\": \"1\", \"showyear\": \"2018\", \"typelist\": \"came\", \"picture\": \"http://image.tmdb.org/t/p/w185/e64sOI48hQXyru7naBFyssKFxVd.jpg\"}"
-        let myAttent1 = MovieListTitle.deserialize(from: string1)
-        var myAttents1 = [MovieListTitle]()
-        myAttents1.append(myAttent1!)
-        cells.append(myAttents1)
-        let contentView = MovieListView(frame: contentFrame, childVcs: childVcs, parentVc: self, cells: cells)
-        contentView.delegate = self
-        return contentView
-        }()
- **/
+        let table = UITableView(frame: contentFrame)
+        table.zl_registerCell(cell: MovieLIstViewCell.self)
+        table.dataSource = self
+        table.delegate = self
+        return table
+    }()
+    
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        return nil
+    }
+    
+    // 行数
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections.count
+    }
+    
+    // cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.zl_dequeueReusableCell(indexPath: indexPath) as MovieLIstViewCell
+        //let section = sections[indexPath.section]
+        let myCellModel = sections[indexPath.row]
+        cell.nameText.text = myCellModel["title"].string
+        cell.rateText.text = "评分：" + transAverage(average: myCellModel["rating"]["average"].double!)
+        cell.yearText.text = myCellModel["year"].string
+        cell.imageVIEW.kf.setImage(with: URL(string:myCellModel["images"]["medium"].string!))
+        return cell
+    }
+    // 行高
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 153
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let stodryboard = UIStoryboard(name: "DetailViewController", bundle: nil)
+        let detailController = stodryboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        //let detailController = DetailViewController()
+        navigationController?.pushViewController(detailController, animated: true)
+        detailController.detail = sections[indexPath.row]
+    }
+    
+    //处理评分
+    func transAverage(average:Double) -> String {
+        return String(format: "%.1f", average/2)
+        
+    }
 }
 
 
@@ -62,9 +96,14 @@ extension ZLHomeViewController {
         
         // 1. 添加 titleview
         view.addSubview(pageTitleView)
+        view.addSubview(tableView)
         
-        // 2. 添加 contentview
-        //view.addSubview(pageContentView)
+        // 设置cells数据
+        
+        NetWorkTool.loadHomeMovieData(genres: "剧情") { (data) in
+            self.sections = data
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -74,12 +113,3 @@ extension ZLHomeViewController: MovieTagViewDelegate {
         //pageContentView.scrollToIndex(index: index)
     }
 }
-
-// MARK:- pageContentViewDelegate
-/**
-extension ZLHomeViewController: MovieListViewDelegate {
-    func pageContentView(pageContentView: MovieListView, progress: CGFloat, sourceIndex: Int, targetIndex: Int) {
-        pageTitleView.setTitleWithProgerss(sourceIndex: sourceIndex, targetIndex: targetIndex, progress: progress)
-    }
-}
- */

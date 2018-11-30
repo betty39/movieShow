@@ -109,7 +109,7 @@ struct SQLiteManager {
             let insert = movies_user.insert(username <- mov.username, movieid <- mov.movieid, title <- mov.title, average <- mov.average, imgmedium <- mov.imgmedium, year <- mov.year)
             //插入数据
             try! database.run(insert)
-            print("插入数据！")
+            print("插入喜欢数据！")
         }
         
     }
@@ -123,6 +123,20 @@ struct SQLiteManager {
         let count = try! database.scalar(title.count)
         
         return count != 0
+    }
+    
+    // 查询收藏电影
+    func searchlike(_ movie: MovieLike) -> [MovieLike] {
+        
+        var likesmovie:[MovieLike]
+        var jsonStrlist = "["
+        for item in try! database.prepare(movies_like.filter(username == movie.username && movieid == movie.movieid)) {
+            var jsonString = "{\"id\":24,\"username\":\""+item[username]+"\",\"movieid\":\""+item[movieid]+"\",\"title\":\""+item[title]+"\",\"average\":\""+item[average]+"\",\"imgmedium\":\""+item[imgmedium]+"\",\"year\":\""+item[year]+"\"},"
+            jsonStrlist = jsonStrlist+jsonString
+        }
+        jsonStrlist = jsonStrlist+"]"
+        likesmovie=[MovieLike].deserialize(from: jsonStrlist)! as! [MovieLike]
+        return likesmovie
     }
     
 }

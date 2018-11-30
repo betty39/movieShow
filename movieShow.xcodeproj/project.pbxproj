@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6337FCF821B009C2007AD9F0 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337FCF721B009C2007AD9F0 /* MyCollectionViewController.swift */; };
+		6337FCFB21B01899007AD9F0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337FCF921B01899007AD9F0 /* DetailViewController.swift */; };
+		6337FCFE21B01F03007AD9F0 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337FCFD21B01F03007AD9F0 /* RatingView.swift */; };
+		6337FD0021B0244B007AD9F0 /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6337FCFF21B0244B007AD9F0 /* DetailViewController.storyboard */; };
 		63C859E421AEACF500352223 /* DefineFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C859E321AEACF500352223 /* DefineFile.swift */; };
 		63C859E621AEAF8E00352223 /* MovieListTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C859E521AEAF8E00352223 /* MovieListTitle.swift */; };
 		63F71A6A21AED5A600A46836 /* MovieTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F71A6921AED5A600A46836 /* MovieTagView.swift */; };
-		63F71A6C21AED69500A46836 /* MovieListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F71A6B21AED69500A46836 /* MovieListCell.xib */; };
-		63F71A6E21AED6A900A46836 /* MovieListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F71A6D21AED6A900A46836 /* MovieListCell.swift */; };
-		63F71A7421AEE28F00A46836 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F71A7321AEE28F00A46836 /* MovieListView.swift */; };
+		63F71AA321AFF5BB00A46836 /* MovieLIstViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F71AA121AFF5BB00A46836 /* MovieLIstViewCell.swift */; };
+		63F71AA421AFF5BB00A46836 /* MovieLIstViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F71AA221AFF5BB00A46836 /* MovieLIstViewCell.xib */; };
 		A430A62C21A2B8AB009F1D15 /* settingPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = A430A62B21A2B8AA009F1D15 /* settingPlist.plist */; };
 		A44072BB21A249CC0062FD09 /* ZLMoreLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44072BA21A249CC0062FD09 /* ZLMoreLoginViewController.swift */; };
 		A44072BD21A24A150062FD09 /* ZLMoreLoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44072BC21A24A150062FD09 /* ZLMoreLoginViewController.storyboard */; };
@@ -69,12 +72,15 @@
 /* Begin PBXFileReference section */
 		1D0142615FE36A4DD60E411F /* Pods-movieShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movieShow.release.xcconfig"; path = "Pods/Target Support Files/Pods-movieShow/Pods-movieShow.release.xcconfig"; sourceTree = "<group>"; };
 		43208B121A8FD6EA95A7DF53 /* Pods-movieShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-movieShow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-movieShow/Pods-movieShow.debug.xcconfig"; sourceTree = "<group>"; };
+		6337FCF721B009C2007AD9F0 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
+		6337FCF921B01899007AD9F0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6337FCFD21B01F03007AD9F0 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		6337FCFF21B0244B007AD9F0 /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		63C859E321AEACF500352223 /* DefineFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefineFile.swift; sourceTree = "<group>"; };
 		63C859E521AEAF8E00352223 /* MovieListTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTitle.swift; sourceTree = "<group>"; };
 		63F71A6921AED5A600A46836 /* MovieTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTagView.swift; sourceTree = "<group>"; };
-		63F71A6B21AED69500A46836 /* MovieListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieListCell.xib; sourceTree = "<group>"; };
-		63F71A6D21AED6A900A46836 /* MovieListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListCell.swift; sourceTree = "<group>"; };
-		63F71A7321AEE28F00A46836 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		63F71AA121AFF5BB00A46836 /* MovieLIstViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLIstViewCell.swift; sourceTree = "<group>"; };
+		63F71AA221AFF5BB00A46836 /* MovieLIstViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieLIstViewCell.xib; sourceTree = "<group>"; };
 		6C2C714F6852CE7E2B13D194 /* Pods_movieShowTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movieShowTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A430A62B21A2B8AA009F1D15 /* settingPlist.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settingPlist.plist; sourceTree = "<group>"; };
 		A44072BA21A249CC0062FD09 /* ZLMoreLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZLMoreLoginViewController.swift; sourceTree = "<group>"; };
@@ -159,9 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				63F71A6921AED5A600A46836 /* MovieTagView.swift */,
-				63F71A6B21AED69500A46836 /* MovieListCell.xib */,
-				63F71A6D21AED6A900A46836 /* MovieListCell.swift */,
-				63F71A7321AEE28F00A46836 /* MovieListView.swift */,
+				63F71AA121AFF5BB00A46836 /* MovieLIstViewCell.swift */,
+				63F71AA221AFF5BB00A46836 /* MovieLIstViewCell.xib */,
+				6337FCFD21B01F03007AD9F0 /* RatingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				A4C5D117219A796800B9F4C1 /* ZLHomeViewController.swift */,
+				6337FCF921B01899007AD9F0 /* DetailViewController.swift */,
+				6337FCFF21B0244B007AD9F0 /* DetailViewController.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -261,6 +269,7 @@
 				A4C5D12C219A796800B9F4C1 /* ZLMineViewController.swift */,
 				A44072BA21A249CC0062FD09 /* ZLMoreLoginViewController.swift */,
 				A44072BC21A24A150062FD09 /* ZLMoreLoginViewController.storyboard */,
+				6337FCF721B009C2007AD9F0 /* MyCollectionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -501,7 +510,12 @@
 				A4C65686219D3FDB00E8E118 /* default_theme.plist in Resources */,
 				A4ED4AB02194184000A5E81C /* Assets.xcassets in Resources */,
 				A4C65688219D400700E8E118 /* night_theme.plist in Resources */,
-				63F71A6C21AED69500A46836 /* MovieListCell.xib in Resources */,
+				6337FD0021B0244B007AD9F0 /* DetailViewController.storyboard in Resources */,
+				A430A62C21A2B8AB009F1D15 /* settingPlist.plist in Resources */,
+				63F71AA421AFF5BB00A46836 /* MovieLIstViewCell.xib in Resources */,
+				A4C65686219D3FDB00E8E118 /* default_theme.plist in Resources */,
+				A4ED4AB02194184000A5E81C /* Assets.xcassets in Resources */,
+				A4C65688219D400700E8E118 /* night_theme.plist in Resources */,
 				A4ED4AAE2194183F00A5E81C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,13 +609,21 @@
 				63F71A6A21AED5A600A46836 /* MovieTagView.swift in Sources */,
 				63C859E421AEACF500352223 /* DefineFile.swift in Sources */,
 				A4E9374521AB95DC00C58810 /* Foundation+Extension.swift in Sources */,
-				63F71A7421AEE28F00A46836 /* MovieListView.swift in Sources */,
 				A4C5D13E219AA84300B9F4C1 /* ZLMyTabBar.swift in Sources */,
 				A49ABE7B219BF6F200E63CF9 /* UIKit+Extension.swift in Sources */,
 				A4C5D133219A796800B9F4C1 /* ZLHomeViewController.swift in Sources */,
 				F298994321B03FA5008BB642 /* MovieLike.swift in Sources */,
 				A4C5D139219A796800B9F4C1 /* ZLMovieNavigationController.swift in Sources */,
-				63F71A6E21AED6A900A46836 /* MovieListCell.swift in Sources */,
+				6337FCFB21B01899007AD9F0 /* DetailViewController.swift in Sources */,
+				63F71A6A21AED5A600A46836 /* MovieTagView.swift in Sources */,
+				63C859E421AEACF500352223 /* DefineFile.swift in Sources */,
+				A4E9374521AB95DC00C58810 /* Foundation+Extension.swift in Sources */,
+				A4C5D13E219AA84300B9F4C1 /* ZLMyTabBar.swift in Sources */,
+				6337FCFE21B01F03007AD9F0 /* RatingView.swift in Sources */,
+				A49ABE7B219BF6F200E63CF9 /* UIKit+Extension.swift in Sources */,
+				A4C5D133219A796800B9F4C1 /* ZLHomeViewController.swift in Sources */,
+				6337FCF821B009C2007AD9F0 /* MyCollectionViewController.swift in Sources */,
+				A4C5D139219A796800B9F4C1 /* ZLMovieNavigationController.swift in Sources */,
 				A4C5D13A219A796800B9F4C1 /* ZLMyTabController.swift in Sources */,
 				A448607921A4004B00CD1941 /* HomeNewsTitle.swift in Sources */,
 				A49ABE6F219BC17000E63CF9 /* ZLMyCellModel.swift in Sources */,
@@ -612,6 +634,10 @@
 				A4C5D140219ABDE400B9F4C1 /* Const.swift in Sources */,
 				63C859E621AEAF8E00352223 /* MovieListTitle.swift in Sources */,
 				A4E9374721AB962C00C58810 /* Emoji.swift in Sources */,
+				A4C5D140219ABDE400B9F4C1 /* Const.swift in Sources */,
+				63C859E621AEAF8E00352223 /* MovieListTitle.swift in Sources */,
+				A4E9374721AB962C00C58810 /* Emoji.swift in Sources */,
+				63F71AA321AFF5BB00A46836 /* MovieLIstViewCell.swift in Sources */,
 				A4C65683219D1DBC00E8E118 /* MyTheme.swift in Sources */,
 				A4FDF75021A5375A00202DDB /* SQliteManager.swift in Sources */,
 				A4C5D143219ABF5700B9F4C1 /* UIColor+Extension.swift in Sources */,
