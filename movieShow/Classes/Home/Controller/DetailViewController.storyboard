@@ -46,6 +46,9 @@
                                 <state key="normal" title="收藏">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="collectmov:" destination="SbG-Du-1xM" eventType="touchUpInside" id="ZDp-re-TSn"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7h-vx-Fep">
                                 <rect key="frame" x="0.0" y="373" width="375" height="0.5"/>
@@ -88,6 +91,7 @@
                             <constraint firstItem="h7h-vx-Fep" firstAttribute="leading" secondItem="wAR-T1-aZi" secondAttribute="leading" id="YdV-AO-1wc"/>
                             <constraint firstItem="Kp6-56-rDT" firstAttribute="top" secondItem="fme-Hx-8dS" secondAttribute="bottom" constant="-3" id="bYE-Gd-qjK"/>
                             <constraint firstItem="h7h-vx-Fep" firstAttribute="top" secondItem="Kp6-56-rDT" secondAttribute="bottom" constant="4.5" id="dLA-m5-RSh"/>
+                            <constraint firstItem="EM3-Gf-d6c" firstAttribute="leading" secondItem="Kp6-56-rDT" secondAttribute="trailing" constant="45" id="fIk-5G-A0j"/>
                             <constraint firstItem="h7h-vx-Fep" firstAttribute="trailing" secondItem="3je-bA-NKw" secondAttribute="trailing" id="huP-b7-e6B"/>
                             <constraint firstAttribute="trailing" secondItem="h7h-vx-Fep" secondAttribute="trailing" id="i5Q-Bg-4py"/>
                             <constraint firstItem="h7h-vx-Fep" firstAttribute="leading" secondItem="brL-2r-jWE" secondAttribute="leading" constant="-108" id="it3-s7-9aw"/>

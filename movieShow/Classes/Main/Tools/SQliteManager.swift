@@ -107,7 +107,7 @@ struct SQLiteManager {
     func insertmov(_ mov : MovieLike) {
         // 如果数据库中该条数据不存在， 插入
         if !existmov(mov) {
-            let insert = movies_user.insert(username <- mov.username, movieid <- mov.movieid, title <- mov.title, average <- mov.average, imgmedium <- mov.imgmedium, year <- mov.year)
+            let insert = movies_like.insert(username <- mov.username, movieid <- mov.movieid, title <- mov.title, average <- mov.average, imgmedium <- mov.imgmedium, year <- mov.year)
             //插入数据
             try! database.run(insert)
             print("插入喜欢数据！")
@@ -127,11 +127,18 @@ struct SQLiteManager {
     }
     
     // 查询收藏电影
-    func searchlike(_ movie: MovieLike) -> [MovieLike] {
+//    var sqlmannager:SQLiteManager!
+//    取存储在本地的username
+//    let userDefault = UserDefaults.standard
+//    let username:String = userDefault.string(forKey: "username")!
+//    sqlmannager = SQLiteManager()
+//    sqlmannager.insertmov(model)
+//    sqlmannager.searchlike(username))
+    func searchlike(_ usrname: String) -> [MovieLike] {
         
         var likesmovie:[MovieLike]
         var jsonStrlist = "["
-        for item in try! database.prepare(movies_like.filter(username == movie.username && movieid == movie.movieid)) {
+        for item in try! database.prepare(movies_like.filter(username == usrname)) {
             var jsonString = "{\"id\":24,\"username\":\""+item[username]+"\",\"movieid\":\""+item[movieid]+"\",\"title\":\""+item[title]+"\",\"average\":\""+item[average]+"\",\"imgmedium\":\""+item[imgmedium]+"\",\"year\":\""+item[year]+"\"},"
             jsonStrlist = jsonStrlist+jsonString
         }

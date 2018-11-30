@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var ratingView1: UIView!
     @IBOutlet weak var yearText1: UILabel!
     @IBOutlet weak var collectBtn1: UIButton!
+    var sqlmannager:SQLiteManager!
     
     @IBOutlet weak var descText1: UILabel!
     override func viewDidLoad() {
@@ -54,7 +55,20 @@ class DetailViewController: UIViewController {
             self.descText1.text = detail["summary"].string
         }
     }
-
+    //点击收藏
+    @IBAction func collectmov(_ sender: Any) {
+        let userDefault = UserDefaults.standard
+        let username:String = userDefault.string(forKey: "username")!
+        let movieid:String = detail["id"].string!
+        let title:String = detail["title"].string!
+        let year:String = self.yearText1.text!
+        let imgmedium:String = detail["cover"].string!
+        
+        let jsonStr = "{\"id\":24,\"username\":\""+username+"\",\"movieid\":\""+movieid + "\",\"title\":\""+title + "\",\"year\":\""+year+"\",\"imgmedium\":\"" + imgmedium+"\"}"
+        guard let model = MovieLike.deserialize(from: jsonStr) else {return}
+        sqlmannager = SQLiteManager()
+        sqlmannager.insertmov(model)
+    }
     //处理评分
     func transAverage(average:Double) -> String {
         return String(format: "%.1f", average/2)
