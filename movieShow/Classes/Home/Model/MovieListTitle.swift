@@ -11,13 +11,18 @@ import HandyJSON
 
 struct MovieListTitle : HandyJSON{
     var moviename: String = ""
-    var movieid: Int = 0
+    var movieid: String = ""
     var showyear: String = ""
-    var typelist: String = ""
+    var rate: String = ""
     var picture: String = ""
 }
 
 struct MovieListTitleTag : HandyJSON{
     var category: String = ""
     var categoryid: Int = 0
+}
+
+struct MovieList {
+    var title: String
+    var cover: String
 }

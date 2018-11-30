@@ -41,12 +41,16 @@ class ZLMineViewController: UITableViewController {
         
         tableView.zl_registerCell(cell: ZLMyOtherCell.self)
         loadData()
+        self.navigationController?.popToRootViewController(animated: true)
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
+        let userDefault = UserDefaults.standard
+        let username:String = userDefault.string(forKey: "username")!
+        headerView.moreButton.setTitle(username, for: .normal)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -65,13 +69,11 @@ extension ZLMineViewController {
         var myAttents = [ZLMyCellModel]()
         myAttents.append(myAttent!)
         self.sections.append(myAttents)
-        let string1 = "{\"text\": \"我的评论\", \"grey_text\": \"\", \"key\": \"review\"}"
-        let myAttent1 = ZLMyCellModel.deserialize(from: string1)
-        var myAttents1 = [ZLMyCellModel]()
-        myAttents1.append(myAttent1!)
-        self.sections.append(myAttents1)
         self.tableView.reloadData()
-        
+        let userDefault = UserDefaults.standard
+        var username:String = userDefault.string(forKey: "username")!
+        headerView.moreButton.setTitle(username, for: .normal)
+        //if (username.characters.count <= 0) {
         headerView.moreButton.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] in
                 let stodryboard = UIStoryboard(name: "ZLMoreLoginViewController", bundle: nil)
@@ -81,6 +83,7 @@ extension ZLMineViewController {
                 self!.present(moreLogin, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        //}
     }
         
 }
@@ -124,7 +127,6 @@ extension ZLMineViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         let systemSVC = MyCollectionViewController()
         self.navigationController?.pushViewController(systemSVC, animated: true)
         

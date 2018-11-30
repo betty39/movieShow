@@ -19,6 +19,7 @@ class MyCollectionViewController: UIViewController, UITableViewDelegate,UITableV
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
+        self.navigationItem.title = "我的收藏"
         // 设置 UI 界面
         setUpUI()
     }
@@ -60,13 +61,10 @@ class MyCollectionViewController: UIViewController, UITableViewDelegate,UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        /**
-         if indexPath.section == 3 && indexPath.row == 1 { //跳转系统设置界面
-         let systemSVC = ZLSystemSetupController()
-         self.navigationController?.pushViewController(systemSVC, animated: true)
-         
-         }
-         **/
+        let stodryboard = UIStoryboard(name: "DetailViewController", bundle: nil)
+        let detailController = stodryboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        navigationController?.pushViewController(detailController, animated: true)
+        detailController.detail = sections[indexPath.row]
     }
     
 }
@@ -76,11 +74,16 @@ class MyCollectionViewController: UIViewController, UITableViewDelegate,UITableV
 extension MyCollectionViewController {
     fileprivate func setUpUI() {
         // 设置cells数据
-        
-        let string1 = "{\"moviename\": \"哈哈哈\", \"movieid\": \"2\", \"showyear\": \"2018\", \"typelist\": \"2018\", \"picture\": \"http://image.tmdb.org/t/p/w185/zMyfPUelumio3tiDKPffaUpsQTD.jpg\"}"
-        let myAttent1 = MovieListTitle.deserialize(from: string1)
-        sections.append(myAttent1!)
-        sections.append(myAttent1!)
+        let userDefault = UserDefaults.standard
+        let username:String = userDefault.string(forKey: "username")!
+        var movieLikes = [MovieLike]()
+        let sqlmannager = SQLiteManager()
+        movieLikes = sqlmannager.searchlike(username)
+        print(movieLikes)
+        for data in movieLikes {
+            let value = "{\"moviename\": \"" + data.title +  "\", \"movieid\": \"" + data.movieid +  "\", \"showyear\": \"" + data.year + "\", \"rate\": \"" + "" + "\", \"picture\": \"" + data.imgmedium + "\"}"
+            sections.append(MovieListTitle.deserialize(from: value)!)
+        }
         // 2. 添加 contentview
         view.addSubview(tableView)
     }

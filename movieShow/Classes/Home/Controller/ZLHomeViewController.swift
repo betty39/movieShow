@@ -11,23 +11,39 @@ import Kingfisher
 import SwiftyJSON
 fileprivate let kTitleViewH : CGFloat = 40
 
+fileprivate let searchViewH : CGFloat = 35
+
 fileprivate let movieListCell = "MovieListCellID"
 
-class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     var titles = ["热门", "最新", "经典", "华语", "欧美", "动作", "喜剧", "爱情", "科幻"]
-    var sections: JSON = []
+    var sections = [MovieListTitle]()
+    var searchView: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
         // 设置 UI 界面
+        let searchFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH, width: kScreenW / 3, height: searchViewH)
+        searchView = UIButton(frame: searchFrame)
+        searchView.setTitle("搜电影",  for: .normal)
+        searchView.setTitleColor(UIColor.orange, for: .normal)
+        searchView.backgroundColor = UIColor.white
+        searchView.addTarget(self, action: #selector(searchClick), for: UIControl.Event.touchUpInside)
+        searchView.setImage(UIImage(named:"search"), for: .normal)
         setUpUI()
+    }
+    
+    @objc func searchClick(sender:UIButton) {
+        let stodryboard = UIStoryboard(name: "MovieSearchViewController", bundle: nil)
+        let detailController = stodryboard.instantiateViewController(withIdentifier: "MovieSearchViewController") as! MovieSearchViewController
+        navigationController?.pushViewController(detailController, animated: true)
     }
 
     // MARK:- 懒加载
     fileprivate lazy var pageTitleView: MovieTagView = {
-        let titleFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH, width: kScreenW, height: kTitleViewH)
+        let titleFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH + searchViewH, width: kScreenW, height: kTitleViewH)
         let titleView = MovieTagView(frame: titleFrame, titles: titles)
         titleView.delegate = self
         return titleView
@@ -36,8 +52,8 @@ class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDat
     //初始化table
     fileprivate lazy var tableView: UITableView = {
         // 1. 确定内容 frame
-        let contentH = kScreenH - kStatusBarH - kNavBarH
-        let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH + kTitleViewH, width: kScreenW, height: contentH)
+        let contentH = kScreenH - kStatusBarH - kNavBarH - kTitleViewH - searchViewH
+        let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH + kTitleViewH + searchViewH, width: kScreenW, height: contentH)
         let table = UITableView(frame: contentFrame)
         table.separatorStyle = .none
         table.zl_registerCell(cell: MovieLIstViewCell.self)
@@ -57,10 +73,10 @@ class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDat
         let cell = tableView.zl_dequeueReusableCell(indexPath: indexPath) as MovieLIstViewCell
         //let section = sections[indexPath.section]
         let myCellModel = sections[indexPath.row]
-        cell.nameText.text = myCellModel["title"].string
-        cell.rateText.text = "评分：" + myCellModel["rate"].string!
-        cell.yearText.text = myCellModel["is_new"].bool == true ? "新上映" : ""
-        cell.imageVIEW.kf.setImage(with: URL(string:myCellModel["cover"].string!))
+        cell.nameText.text = myCellModel.moviename
+        cell.rateText.text = "评分：" + myCellModel.rate
+        cell.yearText.text = myCellModel.showyear
+        cell.imageVIEW.kf.setImage(with: URL(string:myCellModel.picture))
         return cell
     }
     // 行高
@@ -91,6 +107,7 @@ extension ZLHomeViewController {
         automaticallyAdjustsScrollViewInsets = false
         
         // 1. 添加 titleview
+        view.addSubview(searchView)
         view.addSubview(pageTitleView)
         view.addSubview(tableView)
         
