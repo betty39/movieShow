@@ -49,6 +49,8 @@
 		A4FDF75021A5375A00202DDB /* SQliteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FDF74F21A5375A00202DDB /* SQliteManager.swift */; };
 		A4FDF75221A537A200202DDB /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A4FDF75121A537A200202DDB /* libsqlite3.tbd */; };
 		C19D67ED1B3EC167959B497A /* Pods_movieShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C844C24B2273CB3BDD3DF4C6 /* Pods_movieShow.framework */; };
+		F298994121AFF510008BB642 /* MovieUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298994021AFF510008BB642 /* MovieUser.swift */; };
+		F298994321B03FA5008BB642 /* MovieLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298994221B03FA5008BB642 /* MovieLike.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +123,8 @@
 		A4FDF75121A537A200202DDB /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		B5F03EC2BA66D5637A1FE527 /* Pods_movieShowUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movieShowUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C844C24B2273CB3BDD3DF4C6 /* Pods_movieShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_movieShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F298994021AFF510008BB642 /* MovieUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieUser.swift; sourceTree = "<group>"; };
+		F298994221B03FA5008BB642 /* MovieLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLike.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +230,7 @@
 			children = (
 				A448607821A4004B00CD1941 /* HomeNewsTitle.swift */,
 				63C859E521AEAF8E00352223 /* MovieListTitle.swift */,
+				F298994221B03FA5008BB642 /* MovieLike.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			children = (
 				6337FD0121B049EC007AD9F0 /* MovieUser.swift */,
 				A49ABE6E219BC17000E63CF9 /* ZLMyCellModel.swift */,
+				F298994021AFF510008BB642 /* MovieUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -503,6 +509,10 @@
 				A49ABE73219BD1C600E63CF9 /* ZLMyOtherCell.xib in Resources */,
 				A4ED4AB32194184000A5E81C /* LaunchScreen.storyboard in Resources */,
 				A44072BD21A24A150062FD09 /* ZLMoreLoginViewController.storyboard in Resources */,
+				A430A62C21A2B8AB009F1D15 /* settingPlist.plist in Resources */,
+				A4C65686219D3FDB00E8E118 /* default_theme.plist in Resources */,
+				A4ED4AB02194184000A5E81C /* Assets.xcassets in Resources */,
+				A4C65688219D400700E8E118 /* night_theme.plist in Resources */,
 				6337FD0021B0244B007AD9F0 /* DetailViewController.storyboard in Resources */,
 				A430A62C21A2B8AB009F1D15 /* settingPlist.plist in Resources */,
 				63F71AA421AFF5BB00A46836 /* MovieLIstViewCell.xib in Resources */,
@@ -599,6 +609,14 @@
 			files = (
 				A4C5D138219A796800B9F4C1 /* ZLMineViewController.swift in Sources */,
 				A4C5D136219A796800B9F4C1 /* AppDelegate.swift in Sources */,
+				63F71A6A21AED5A600A46836 /* MovieTagView.swift in Sources */,
+				63C859E421AEACF500352223 /* DefineFile.swift in Sources */,
+				A4E9374521AB95DC00C58810 /* Foundation+Extension.swift in Sources */,
+				A4C5D13E219AA84300B9F4C1 /* ZLMyTabBar.swift in Sources */,
+				A49ABE7B219BF6F200E63CF9 /* UIKit+Extension.swift in Sources */,
+				A4C5D133219A796800B9F4C1 /* ZLHomeViewController.swift in Sources */,
+				F298994321B03FA5008BB642 /* MovieLike.swift in Sources */,
+				A4C5D139219A796800B9F4C1 /* ZLMovieNavigationController.swift in Sources */,
 				6337FCFB21B01899007AD9F0 /* DetailViewController.swift in Sources */,
 				63F71A6A21AED5A600A46836 /* MovieTagView.swift in Sources */,
 				63C859E421AEACF500352223 /* DefineFile.swift in Sources */,
@@ -615,6 +633,10 @@
 				A49ABE72219BD1C600E63CF9 /* ZLMyOtherCell.swift in Sources */,
 				A44072BB21A249CC0062FD09 /* ZLMoreLoginViewController.swift in Sources */,
 				A49ABE81219C1FAF00E63CF9 /* ZLNoLoginHeaderView.swift in Sources */,
+				F298994121AFF510008BB642 /* MovieUser.swift in Sources */,
+				A4C5D140219ABDE400B9F4C1 /* Const.swift in Sources */,
+				63C859E621AEAF8E00352223 /* MovieListTitle.swift in Sources */,
+				A4E9374721AB962C00C58810 /* Emoji.swift in Sources */,
 				A4C5D140219ABDE400B9F4C1 /* Const.swift in Sources */,
 				63C859E621AEAF8E00352223 /* MovieListTitle.swift in Sources */,
 				A4E9374721AB962C00C58810 /* Emoji.swift in Sources */,
