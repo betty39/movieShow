@@ -41,9 +41,9 @@ class ZLMoreLoginViewController:  AnimatableModalViewController{
             guard let model = MovieUser.deserialize(from: jsonString) else {return}
             //与数据库建立连接
             sqlmannager = SQLiteManager()
-            //sqlmannager.tableLampCreate()
+            // sqlmannager.tableLampCreate()
             // sqlmannager.insert(model)
-        
+
             if sqlmannager.islogin(model) == true {
                 print("登录成功！")
                 //跳转

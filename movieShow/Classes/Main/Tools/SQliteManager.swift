@@ -16,6 +16,7 @@ struct SQLiteManager {
         do {
             let path = NSHomeDirectory() + "/Documents/ios_movie.sqlite3"
             database = try Connection(path)
+            
             print(path)
             print("与数据库建立连接！")
         } catch  { print(error) }

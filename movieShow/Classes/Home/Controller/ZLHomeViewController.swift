@@ -14,7 +14,7 @@ fileprivate let kTitleViewH : CGFloat = 40
 fileprivate let movieListCell = "MovieListCellID"
 
 class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
-    var titles = ["热门", "社会", "科技", "旅游"]
+    var titles = ["热门", "最新", "经典", "华语", "欧美", "动作", "喜剧", "爱情", "科幻"]
     var sections: JSON = []
     
     override func viewDidLoad() {
@@ -29,7 +29,6 @@ class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDat
     fileprivate lazy var pageTitleView: MovieTagView = {
         let titleFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH, width: kScreenW, height: kTitleViewH)
         let titleView = MovieTagView(frame: titleFrame, titles: titles)
-        tableView.separatorStyle = .none
         titleView.delegate = self
         return titleView
     }()
@@ -40,15 +39,13 @@ class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDat
         let contentH = kScreenH - kStatusBarH - kNavBarH
         let contentFrame = CGRect(x: 0, y: kStatusBarH + kNavBarH + kTitleViewH, width: kScreenW, height: contentH)
         let table = UITableView(frame: contentFrame)
+        table.separatorStyle = .none
         table.zl_registerCell(cell: MovieLIstViewCell.self)
         table.dataSource = self
         table.delegate = self
         return table
     }()
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        return nil
-    }
     
     // 行数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,21 +58,20 @@ class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDat
         //let section = sections[indexPath.section]
         let myCellModel = sections[indexPath.row]
         cell.nameText.text = myCellModel["title"].string
-        cell.rateText.text = "评分：" + transAverage(average: myCellModel["rating"]["average"].double!)
-        cell.yearText.text = myCellModel["year"].string
-        cell.imageVIEW.kf.setImage(with: URL(string:myCellModel["images"]["medium"].string!))
+        cell.rateText.text = "评分：" + myCellModel["rate"].string!
+        cell.yearText.text = myCellModel["is_new"].bool == true ? "新上映" : ""
+        cell.imageVIEW.kf.setImage(with: URL(string:myCellModel["cover"].string!))
         return cell
     }
     // 行高
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 153
+        return 139
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let stodryboard = UIStoryboard(name: "DetailViewController", bundle: nil)
         let detailController = stodryboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        //let detailController = DetailViewController()
         navigationController?.pushViewController(detailController, animated: true)
         detailController.detail = sections[indexPath.row]
     }
@@ -100,9 +96,10 @@ extension ZLHomeViewController {
         
         // 设置cells数据
         
-        NetWorkTool.loadHomeMovieData(genres: "剧情") { (data) in
+        NetWorkTool.loadHomeMovieData(genres: "热门") { (data) in
             self.sections = data
             self.tableView.reloadData()
+            print(data)
         }
     }
 }
@@ -110,6 +107,9 @@ extension ZLHomeViewController {
 // MARK:- pageTitleViewDelegate
 extension ZLHomeViewController: MovieTagViewDelegate {
     func pageTitleView(pageTitleView: MovieTagView, didSelectedIndex index: Int) {
-        //pageContentView.scrollToIndex(index: index)
+        NetWorkTool.loadHomeMovieData(genres: titles[index]) { (data) in
+            self.sections = data
+            self.tableView.reloadData()
+        }
     }
 }
