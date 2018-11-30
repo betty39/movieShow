@@ -50,7 +50,7 @@ class MyCollectionViewController: UIViewController, UITableViewDelegate,UITableV
         
         cell.nameText.text = myCellModel.moviename
         cell.yearText.text = myCellModel.showyear
-        cell.rateText.text = "评分:"
+        cell.rateText.text = ""
         cell.imageVIEW.kf.setImage(with: URL(string:myCellModel.picture))
         return cell
     }

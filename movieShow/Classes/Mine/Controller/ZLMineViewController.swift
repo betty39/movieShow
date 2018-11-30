@@ -14,7 +14,7 @@ import RxSwift
 
 let zlMyOtherCell: String = "zlMyOtherCell"
 
-class ZLMineViewController: UITableViewController {
+class ZLMineViewController: UITableViewController, ZLMoreLoginViewControllerDelegate {
 
     private let disposeBag = DisposeBag()
     
@@ -71,19 +71,20 @@ extension ZLMineViewController {
         self.sections.append(myAttents)
         self.tableView.reloadData()
         let userDefault = UserDefaults.standard
-        var username:String = userDefault.string(forKey: "username")!
-        headerView.moreButton.setTitle(username, for: .normal)
-        //if (username.characters.count <= 0) {
+        let username:String = userDefault.string(forKey: "username")!
+        if(username != ""){
+            headerView.moreButton.setTitle(username, for: .normal)
+        }
         headerView.moreButton.rx.controlEvent(.touchUpInside)
             .subscribe(onNext: { [weak self] in
                 let stodryboard = UIStoryboard(name: "ZLMoreLoginViewController", bundle: nil)
                 let moreLogin = stodryboard.instantiateViewController(withIdentifier: "ZLMoreLoginViewController") as! ZLMoreLoginViewController
+                moreLogin.delegate = self
                 moreLogin.modalSize = (width: .full, height: .custom(size: Float(screenHeight - (isIPhoneX ? 44 : 20))))
                 
                 self!.present(moreLogin, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
-        //}
     }
         
 }
@@ -142,5 +143,11 @@ extension ZLMineViewController {
         }
         
     }
-
+    
+    func loginSuccess() {
+        let userDefault = UserDefaults.standard
+        let username:String = userDefault.string(forKey: "username")!
+        print("调用成功")
+        self.headerView.moreButton.setTitle(username, for: .normal)
+    }
 }

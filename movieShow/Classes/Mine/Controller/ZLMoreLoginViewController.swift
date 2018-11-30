@@ -8,9 +8,13 @@
 
 import UIKit
 import IBAnimatable
+// MARK:- 定义协议
+protocol ZLMoreLoginViewControllerDelegate: class {
+    func loginSuccess()
+}
 
 class ZLMoreLoginViewController:  AnimatableModalViewController{
-    
+    weak var delegate: ZLMoreLoginViewControllerDelegate?
     // 注册按钮
     @IBOutlet weak var registerbtn: UIButton!
     
@@ -65,10 +69,11 @@ class ZLMoreLoginViewController:  AnimatableModalViewController{
                 let userDefault = UserDefaults.standard
                 userDefault.set(username, forKey: "username")
                 //跳转
+                delegate?.loginSuccess()
                 dismiss(animated: true, completion: nil)
             }else{
                 print("登录失败！")
-                let alert = UIAlertController(title: "提示", message: "用户名或密码，请重新输入！", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "提示", message: "用户名或密码错误，请重新输入！", preferredStyle: UIAlertController.Style.alert)
                 let btnOK = UIAlertAction(title: "好的", style: .default, handler: nil)
                 alert.addAction(btnOK)
                 self.present(alert, animated: true, completion: nil)

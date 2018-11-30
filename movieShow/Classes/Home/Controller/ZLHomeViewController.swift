@@ -71,7 +71,6 @@ class ZLHomeViewController: UIViewController, UITableViewDelegate,UITableViewDat
     // cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.zl_dequeueReusableCell(indexPath: indexPath) as MovieLIstViewCell
-        //let section = sections[indexPath.section]
         let myCellModel = sections[indexPath.row]
         cell.nameText.text = myCellModel.moviename
         cell.rateText.text = "评分：" + myCellModel.rate
@@ -116,7 +115,6 @@ extension ZLHomeViewController {
         NetWorkTool.loadHomeMovieData(genres: "热门") { (data) in
             self.sections = data
             self.tableView.reloadData()
-            print(data)
         }
     }
 }

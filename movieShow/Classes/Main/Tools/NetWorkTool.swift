@@ -36,7 +36,7 @@ extension NetWorkToolProtocol {
             }
             var data:JSON = []
             var movies = [MovieListTitle]()
-            data = JSON(response.result.value)["subjects"]
+            data = JSON(response.result.value!)["subjects"]
             for (_,v) in data {
                 let if_new = v["is_new"].bool == true ? "新上映" : ""
                 let value = "{\"moviename\": \"" + v["title"].string! +  "\", \"movieid\": \"" + v["id"].string! +  "\", \"showyear\": \"" + if_new + "\", \"rate\": \"" + v["rate"].string! + "\", \"picture\": \"" + v["cover"].string! + "\"}"
