@@ -2,7 +2,7 @@
 //  ZLMyTabController.swift
 //  movieShow
 //
-//  Created by 何怡家 on 2018/11/9.
+//  Created by 何怡家 on 2018/11/26.
 //  Copyright © 2018 heyijia All rights reserved.
 //
 
@@ -23,28 +23,15 @@ class ZLMyTabController: UITabBarController {
     }
     
     @objc func receiveDayoOrNightChange(notification: Notification) {
-        let selected = notification.object as! Bool
-        if selected { // 设置为夜间
-            for childController in children {
-                switch childController.title! {
-                case "首页":
-                    setNightChildController(controller: childController, imageName: "home")
-                case "未登录":
-                    setNightChildController(controller: childController, imageName: "no_login")
-                default:
-                    break
-                }
-            }
-        } else { // 设置为日间
-            for childController in children {
-                switch childController.title! {
-                case "首页":
-                    setDayChildController(controller: childController, imageName: "home")
-                case "未登录":
-                    setDayChildController(controller: childController, imageName: "no_login")
-                default:
-                    break
-                }
+        _ = notification.object as! Bool
+        for childController in children {
+            switch childController.title! {
+            case "首页":
+                setDayChildController(controller: childController, imageName: "home")
+            case "未登录":
+                setDayChildController(controller: childController, imageName: "no_login")
+            default:
+                break
             }
         }
         

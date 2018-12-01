@@ -2,7 +2,7 @@
 //  MyCollectionViewController.swift
 //  movieShow
 //
-//  Created by 何怡家 on 2018/11/9.
+//  Created by 何怡家 on 2018/11/26.
 //  Copyright © 2018 heyijia All rights reserved.
 //
 
